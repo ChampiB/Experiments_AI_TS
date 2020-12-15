@@ -1,0 +1,3 @@
+[submodule "Homing-Pigeon"]
+	path = Homing-Pigeon
+	url = https://github.com/ChampiB/Homing-Pigeon.git
