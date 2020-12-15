@@ -1,23 +1,23 @@
 # Function adding an example to the build
-function(add_example)
+function(add_experiment)
     set(options)
     set(args NAME)
     set(list_args)
     cmake_parse_arguments(
             PARSE_ARGV 0
-            ADD_EXAMPLE
+            ADD_EXPERIMENT
             "${options}"
             "${args}"
             "${list_args}"
     )
 
-    foreach(arg IN LISTS ADD_EXAMPLE_UNPARSED_ARGUMENTS)
+    foreach(arg IN LISTS ADD_EXPERIMENT_UNPARSED_ARGUMENTS)
         message(WARNING "Unparsed argument: ${arg}")
     endforeach()
 
     # Add the executable and link the hopi library
-    add_executable(${ADD_EXAMPLE_NAME} examples/${ADD_EXAMPLE_NAME}.cpp)
-    add_dependencies(${ADD_EXAMPLE_NAME} hopi)
-    target_link_libraries(${ADD_EXAMPLE_NAME} PUBLIC hopi)
-    target_include_directories(${ADD_EXAMPLE_NAME} PUBLIC libs/eigen)
+    add_executable(${ADD_EXPERIMENT_NAME} experiments/${ADD_EXPERIMENT_NAME}.cpp)
+    add_dependencies(${ADD_EXPERIMENT_NAME} hopi)
+    target_link_libraries(${ADD_EXPERIMENT_NAME} PUBLIC hopi)
+    target_include_directories(${ADD_EXPERIMENT_NAME} PUBLIC Homing-Pigeon/libs/eigen)
 endfunction()
