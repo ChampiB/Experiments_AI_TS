@@ -11,7 +11,6 @@
 #include "graphs/FactorGraph.h"
 #include "algorithms/AlgoTree.h"
 #include "algorithms/AlgoVMP.h"
-#include "algorithms/NodeSelectionType.h"
 #include <Eigen/Dense>
 #include <iostream>
 #include <chrono>
@@ -56,7 +55,17 @@ void run_simulation(MazeEnv *env, int nb_AP_steps, int nb_P_steps) {
     /**
      ** Create the model's prior preferences.
      **/
-    MatrixXd D_tilde = MatrixXd::Constant(env->states(),  1, 1.0 / env->states());
+    // Advanced prior preferences over hidden state:
+    // D_tilde(5,0) = 0.8;
+    // std::vector<int> good_states{0,1,2,3,4,7,12,15,21};
+    // for (int good_state : good_states) {
+    //     D_tilde(good_state,0) = 0.02;
+    // }
+
+    // Simple prior preferences over hidden state:
+    MatrixXd D_tilde = MatrixXd::Constant(env->states(),  1, 1.0 / (env->states() - 1));
+
+    // Prior preferences over observation:
     MatrixXd E_tilde(env->observations(),  1);
     for (int i = 0; i < env->observations(); ++i) {
         E_tilde(i, 0) = (env->observations() - i);
@@ -76,6 +85,7 @@ void run_simulation(MazeEnv *env, int nb_AP_steps, int nb_P_steps) {
             algoTree->evaluation();
             algoTree->backpropagation(n, fg->treeRoot());
         }
+        env->print();
         int a = algoTree->actionSelection(fg->treeRoot());
         int o = env->execute(a);
         fg->integrate(a, fg->oneHot(env->observations(), o), A, B);
@@ -85,11 +95,11 @@ void run_simulation(MazeEnv *env, int nb_AP_steps, int nb_P_steps) {
 int main()
 {
     // Number of experiments
-    int E = 5;
+    int E = 1;
     // Number of action perception cycles
-    int AP = 20;
+    int AP = 15;
     // Number of planning steps
-    int P  = 50;
+    int P  = 100;
     // Number of simulations
     int N  = 100;
 

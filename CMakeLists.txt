@@ -14,4 +14,6 @@ include(${HOMING_PIGEON_ROOT}/AddUnitTests.cmake)
 add_subdirectory(${HOMING_PIGEON_ROOT}/libs/hopi)
 
 # Examples of Homing Pigeon
-add_experiment(NAME local_minimum_1)
+add_experiment(NAME local_minimum)
+add_experiment(NAME full_vs_partial_expansion)
+add_experiment(NAME global_vs_local_inference)
