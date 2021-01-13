@@ -12,6 +12,7 @@
 #include "graphs/FactorGraph.h"
 #include "algorithms/AlgoTree.h"
 #include "algorithms/AlgoVMP.h"
+#include "math/Functions.h"
 #include <Eigen/Dense>
 #include <iostream>
 #include <chrono>
@@ -20,6 +21,7 @@ using namespace hopi::environments;
 using namespace hopi::distributions;
 using namespace hopi::nodes;
 using namespace hopi::graphs;
+using namespace hopi::math;
 using namespace hopi::algorithms;
 using namespace Eigen;
 
@@ -61,7 +63,7 @@ void run_simulation(MazeEnv *env, int nb_AP_steps, int nb_P_steps, int max_depth
     for (int i = 0; i < env->observations(); ++i) {
         E_tilde(i, 0) = (env->observations() - i);
     }
-    E_tilde = AlgoVMP::softmax(E_tilde);
+    E_tilde = Functions::softmax(E_tilde);
 
     /**
      ** Run the simulation.
@@ -75,10 +77,6 @@ void run_simulation(MazeEnv *env, int nb_AP_steps, int nb_P_steps, int max_depth
             AlgoVMP::inference(algoTree->lastExpansionNodes());
             algoTree->evaluation();
             algoTree->backpropagation(n, fg->treeRoot());
-        }
-        if (i == 0) {
-            std::vector<VarNodeAttr> attrs{};
-            fg->writeGraphviz("../examples/graphs/111.graph", attrs);
         }
         int a = algoTree->actionSelection(fg->treeRoot());
         int o = env->execute(a);

@@ -9,6 +9,7 @@
 #include "nodes/VarNode.h"
 #include "distributions/Categorical.h"
 #include "graphs/FactorGraph.h"
+#include "math/Functions.h"
 #include "algorithms/AlgoTree.h"
 #include "algorithms/AlgoVMP.h"
 #include <Eigen/Dense>
@@ -20,6 +21,7 @@ using namespace hopi::distributions;
 using namespace hopi::nodes;
 using namespace hopi::graphs;
 using namespace hopi::algorithms;
+using namespace hopi::math;
 using namespace Eigen;
 
 void run_simulation(MazeEnv *env, int nb_AP_steps, int nb_P_steps, bool global_inf) {
@@ -60,7 +62,7 @@ void run_simulation(MazeEnv *env, int nb_AP_steps, int nb_P_steps, bool global_i
     for (int i = 0; i < env->observations(); ++i) {
         E_tilde(i, 0) = (env->observations() - i);
     }
-    E_tilde = AlgoVMP::softmax(E_tilde);
+    E_tilde = Functions::softmax(E_tilde);
 
     /**
      ** Run the simulation.
@@ -113,7 +115,6 @@ int main()
         auto begin = std::chrono::steady_clock::now();
 
         for (int i = 0; i < N; ++i) { // For N simulations
-            std::cout << i << std::endl;
             auto env = std::make_unique<MazeEnv>("../Homing-Pigeon/examples/mazes/5.maze");
             run_simulation(env.get(), AP, P, global_inf);
             auto exit_pos = env->exitPosition();
