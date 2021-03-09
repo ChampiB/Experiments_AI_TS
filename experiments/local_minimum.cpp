@@ -83,7 +83,7 @@ void run_simulation(MazeEnv *env, int nb_AP_steps, int nb_P_steps) {
         for (int j = 0; j < nb_P_steps; ++j) { // Planning
             VarNode *n = algoTree->nodeSelection(fg);
             algoTree->expansion(n, A, B);
-            AlgoVMP::inference(algoTree->lastExpansionNodes());
+            AlgoVMP::inference(algoTree->lastExpandedNodes());
             algoTree->evaluation();
             algoTree->backpropagation(n, fg->treeRoot());
         }

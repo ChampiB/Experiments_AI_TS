@@ -76,7 +76,7 @@ void run_simulation(MazeEnv *env, int nb_AP_steps, int nb_P_steps, bool global_i
             if (global_inf) {
                 AlgoVMP::inference(fg->getNodes());
             } else {
-                AlgoVMP::inference(algoTree->lastExpansionNodes());
+                AlgoVMP::inference(algoTree->lastExpandedNodes());
             }
             algoTree->evaluation();
             algoTree->backpropagation(n, fg->treeRoot());

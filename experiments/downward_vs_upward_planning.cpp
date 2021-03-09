@@ -25,7 +25,7 @@ using namespace hopi::math;
 using namespace hopi::algorithms;
 using namespace Eigen;
 
-void run_simulation(MazeEnv *env, int nb_AP_steps, int nb_P_steps, int max_depth) {
+void run_simulation(MazeEnv *env, int nb_AP_steps, int nb_P_steps, BackPropagationType T) {
     /**
      ** Delete previous factor graph if any.
      **/
@@ -53,7 +53,7 @@ void run_simulation(MazeEnv *env, int nb_AP_steps, int nb_P_steps, int max_depth
     o1->setType(VarNodeType::OBSERVED);
     std::shared_ptr<FactorGraph> fg = FactorGraph::current();
     fg->setTreeRoot(s1);
-    fg->loadEvidence(env->observations(), "../Homing-Pigeon/examples/evidences/5.evi");
+    fg->loadEvidence(env->observations(), "../Homing-Pigeon/examples/evidences/1.evi");
 
     /**
      ** Create the model's prior preferences.
@@ -70,13 +70,13 @@ void run_simulation(MazeEnv *env, int nb_AP_steps, int nb_P_steps, int max_depth
      **/
     for (int i = 0; i < nb_AP_steps; ++i) { // Action perception cycle
         AlgoVMP::inference(fg->getNodes());
-        auto algoTree = std::make_unique<AlgoTree>(env->actions(), D_tilde, E_tilde, max_depth);
+        auto algoTree = std::make_unique<AlgoTree>(env->actions(), D_tilde, E_tilde);
         for (int j = 0; j < nb_P_steps; ++j) { // Planning
             VarNode *n = algoTree->nodeSelection(fg);
             algoTree->expansion(n, A, B);
             AlgoVMP::inference(algoTree->lastExpandedNodes());
             algoTree->evaluation();
-            algoTree->backpropagation(n, fg->treeRoot());
+            algoTree->backpropagation(n, fg->treeRoot(), T);
         }
         int a = algoTree->actionSelection(fg->treeRoot());
         int o = env->execute(a);
@@ -87,22 +87,22 @@ void run_simulation(MazeEnv *env, int nb_AP_steps, int nb_P_steps, int max_depth
 int main()
 {
     // Number of experiments
-    int E = 20;
+    int E = 10;
     // Number of action perception cycles
     int AP = 20;
     // Number of planning steps
     int P  = 50;
     // Number of simulations
-    int N  = 1;
-    // Maximal depth of the tree search
-    int MD = -1;
+    int N  = 100;
+    // Type of back-propagation
+    BackPropagationType T = DOWNWARD_BP;
 
     std::cout << std::endl;
     std::cout << "Number of experiments: " << E << std::endl;
     std::cout << "Number of action perception cycles: " << AP << std::endl;
     std::cout << "Number of planning iterations: " << P << std::endl;
     std::cout << "Number of simulations: " << N << std::endl;
-    std::cout << "Maximal depth: " << MD << std::endl;
+    std::cout << "Type of back-propagation: " << T << std::endl;
     std::cout << std::endl;
     std::cout << "nsuccesses,h,m,s,ms " << std::endl;
 
@@ -113,8 +113,8 @@ int main()
         double total = 0;
 
         for (int i = 0; i < N; ++i) { // For N simulations
-            auto env = std::make_unique<MazeEnv>("../Homing-Pigeon/examples/mazes/5.maze");
-            run_simulation(env.get(), AP, P, MD);
+            auto env = std::make_unique<MazeEnv>("../Homing-Pigeon/examples/mazes/1.maze");
+            run_simulation(env.get(), AP, P, T);
             auto exit_pos = env->exitPosition();
             auto agent_pos = env->agentPosition();
             if (env->manhattan_distance(agent_pos, exit_pos) <= 1) {
