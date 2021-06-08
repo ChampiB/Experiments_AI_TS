@@ -19,5 +19,21 @@ function(add_experiment)
     add_executable(${ADD_EXPERIMENT_NAME} experiments/${ADD_EXPERIMENT_NAME}.cpp)
     add_dependencies(${ADD_EXPERIMENT_NAME} hopi)
     target_link_libraries(${ADD_EXPERIMENT_NAME} PUBLIC hopi)
-    target_include_directories(${ADD_EXPERIMENT_NAME} PUBLIC ${HOMING_PIGEON_ROOT}/libs/eigen)
+
+    # Link pytorch
+    set(Torch_DIR "${HOMING_PIGEON_ROOT}/libs/torch/share/cmake/Torch")
+    set(Caffe2_DIR "${HOMING_PIGEON_ROOT}/libs/torch/share/cmake/Caffe2")
+
+    find_package(Torch REQUIRED)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
+    target_link_libraries(${ADD_EXPERIMENT_NAME} PUBLIC "${TORCH_LIBRARIES}")
+
+    if (MSVC)
+        file(GLOB TORCH_DLLS "${TORCH_INSTALL_PREFIX}/lib/*.dll")
+        add_custom_command(TARGET hopi
+                POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                ${TORCH_DLLS}
+                $<TARGET_FILE_DIR:hopi>)
+    endif (MSVC)
 endfunction()
