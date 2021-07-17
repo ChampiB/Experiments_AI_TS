@@ -18,25 +18,25 @@ label.modality   = {'distance'};
 
 % DETERMINISTIC
 %--------------------------------------------------------------------------
-% 2 moves - softmax leads to local    local
-% 3 moves - softmax leads to local    local
-% 4 moves - softmax leads to local    local
-% 5 moves - softmax leads to local    
-% 2 moves + softmax leads to other    other (weird behaviour)
-% 3 moves + softmax leads to other    other (weird behaviour)
-% 4 moves + softmax leads to global   global
-% 5 moves + softmax leads to local    
+% 2 moves - softmax leads to local
+% 3 moves - softmax leads to local
+% 4 moves - softmax leads to local
+% 5 moves - softmax leads to local
+% 2 moves + softmax leads to other (weird behaviour)
+% 3 moves + softmax leads to other (weird behaviour)
+% 4 moves + softmax leads to global
+% 5 moves + softmax leads to global
 
 % STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
 %--------------------------------------------------------------------------
 % 5 moves - softmax leads to local
-% 4 moves - softmax leads to local    local
-% 3 moves - softmax leads to local    local (good behaviour)
-% 2 moves - softmax leads to other    other (weird behaviour)
-% 5 moves + softmax leads to local
-% 4 moves + softmax leads to other    local
-% 3 moves + softmax leads to other    other (epileptic behaviour)
-% 2 moves + softmax leads to other    local
+% 4 moves - softmax leads to local
+% 3 moves - softmax leads to local (good behaviour)
+% 2 moves - softmax leads to other (weird behaviour)
+% 5 moves + softmax leads to other
+% 4 moves + softmax leads to local
+% 3 moves + softmax leads to other (epileptic behaviour)
+% 2 moves + softmax leads to local
 
 % STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
 %--------------------------------------------------------------------------
@@ -73,13 +73,13 @@ OUTCOMES_1    = 10;
 
 % DETERMINISTIC
 %--------------------------------------------------------------------------
-% 2 moves - softmax leads to local    local
-% 3 moves - softmax leads to global   global
-% 4 moves - softmax leads to local    local
+% 2 moves - softmax leads to local
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to local
 % 5 moves - softmax leads to local
-% 2 moves + softmax leads to global   global (good bahaviour)
-% 3 moves + softmax leads to global   global (good bahaviour)
-% 4 moves + softmax leads to global   global
+% 2 moves + softmax leads to global (good bahaviour)
+% 3 moves + softmax leads to global (good bahaviour)
+% 4 moves + softmax leads to global
 % 5 moves + softmax leads to global
 
 % STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
@@ -88,7 +88,7 @@ OUTCOMES_1    = 10;
 % 4 moves - softmax leads to local    local
 % 3 moves - softmax leads to global   global
 % 2 moves - softmax leads to local    global
-% 5 moves + softmax leads to global
+% 5 moves + softmax leads to global   global
 % 4 moves + softmax leads to global   global
 % 3 moves + softmax leads to global   global (good bahaviour)
 % 2 moves + softmax leads to global   global (good bahaviour)
@@ -192,14 +192,14 @@ OUTCOMES_3    = 13;
 % 2 moves + softmax leads to local    other
 % 3 moves + softmax leads to other    other (interresting behaviour)
 % 4 moves + softmax leads to other    other
-% 5 moves + softmax leads to local
+% 5 moves + softmax leads to local    
 
 % STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
 %--------------------------------------------------------------------------
 % 2 moves - softmax leads to local    local
 % 3 moves - softmax leads to local    local
 % 4 moves - softmax leads to local    local
-% 5 moves - softmax leads to local
+% 5 moves - softmax leads to local    
 % 2 moves + softmax leads to local    local
 % 3 moves + softmax leads to local    local
 % 4 moves + softmax leads to local    local
@@ -234,13 +234,13 @@ OUTCOMES_4    = 10;
 
 
 
-MAZE        = MAZE_1;
-EXIT_POS    = EXIT_POS_1;
-START_POS   = START_POS_1;
-STATES      = STATES_1;    % Number of states
-OUTCOMES    = OUTCOMES_1;  % Number of outcomes
+MAZE        = MAZE_2;
+EXIT_POS    = EXIT_POS_2;
+START_POS   = START_POS_2;
+STATES      = STATES_2;    % Number of states
+OUTCOMES    = OUTCOMES_2;  % Number of outcomes
 ACTIONS     = 5;           % Number of actions: UP=1,DOWN=2,LEFT=3,RIGHT=4,STAY=5
-NOISE       = 0.2;
+NOISE       = 0.1;
 SIGNAL      = 1 - NOISE;
 TRIALS      = 30;
 
@@ -326,7 +326,7 @@ C{1} = zeros(OUTCOMES,1);
 for g = 1:OUTCOMES
     C{1}(g) = OUTCOMES - g;
 end
-%C{1} = spm_softmax(C{1});
+C{1} = spm_softmax(C{1});
 
 % basic MDP structure
 %--------------------------------------------------------------------------
