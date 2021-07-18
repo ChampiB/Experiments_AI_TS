@@ -85,24 +85,24 @@ OUTCOMES_1    = 10;
 % STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
 %--------------------------------------------------------------------------
 % 5 moves - softmax leads to global
-% 4 moves - softmax leads to local    local
-% 3 moves - softmax leads to global   global
-% 2 moves - softmax leads to local    global
-% 5 moves + softmax leads to global   global
-% 4 moves + softmax leads to global   global
-% 3 moves + softmax leads to global   global (good bahaviour)
-% 2 moves + softmax leads to global   global (good bahaviour)
+% 4 moves - softmax leads to local
+% 3 moves - softmax leads to global
+% 2 moves - softmax leads to global
+% 5 moves + softmax leads to global
+% 4 moves + softmax leads to global
+% 3 moves + softmax leads to global (good bahaviour)
+% 2 moves + softmax leads to global (good bahaviour)
 
 % STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
 %--------------------------------------------------------------------------
 % 5 moves - softmax leads to global
-% 4 moves - softmax leads to global   global
-% 3 moves - softmax leads to global   global
-% 2 moves - softmax leads to local    global (a bit weird bahaviour)
+% 4 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 2 moves - softmax leads to global (a bit weird bahaviour)
 % 5 moves + softmax leads to global
-% 4 moves + softmax leads to global   global
-% 3 moves + softmax leads to global   global (weird bahaviour)
-% 2 moves + softmax leads to global   global (weird bahaviour)
+% 4 moves + softmax leads to global
+% 3 moves + softmax leads to global (weird bahaviour)
+% 2 moves + softmax leads to global (weird bahaviour)
 
 MAZE_2  = [...
     1 1 1 1 1;
@@ -156,7 +156,7 @@ OUTCOMES_2    = 5;
 % 2 moves + softmax leads to other    other (drunk agent)
 % 3 moves + softmax leads to other    other (drunk agent)
 % 4 moves + softmax leads to other    other (drunk agent)
-% 5 moves + softmax leads to other
+% 5 moves + softmax leads to other    other (drunk agent)
 
 MAZE_3  = [...
     1 1 1 1 1 1 1 1 1;
@@ -234,13 +234,13 @@ OUTCOMES_4    = 10;
 
 
 
-MAZE        = MAZE_2;
-EXIT_POS    = EXIT_POS_2;
-START_POS   = START_POS_2;
-STATES      = STATES_2;    % Number of states
-OUTCOMES    = OUTCOMES_2;  % Number of outcomes
+MAZE        = MAZE_3;
+EXIT_POS    = EXIT_POS_3;
+START_POS   = START_POS_3;
+STATES      = STATES_3;    % Number of states
+OUTCOMES    = OUTCOMES_3;  % Number of outcomes
 ACTIONS     = 5;           % Number of actions: UP=1,DOWN=2,LEFT=3,RIGHT=4,STAY=5
-NOISE       = 0.1;
+NOISE       = 0.2;
 SIGNAL      = 1 - NOISE;
 TRIALS      = 30;
 
