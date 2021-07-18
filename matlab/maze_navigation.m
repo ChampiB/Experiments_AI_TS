@@ -127,36 +127,36 @@ OUTCOMES_2    = 5;
 
 % DETERMINISTIC
 %--------------------------------------------------------------------------
-% 2 moves - softmax leads to global   global (brillant behavour)
-% 3 moves - softmax leads to global   global (brillant behavour)
-% 4 moves - softmax leads to global   global
+% 2 moves - softmax leads to global (brillant behavour)
+% 3 moves - softmax leads to global (brillant behavour)
+% 4 moves - softmax leads to global
 % 5 moves - softmax leads to global
-% 2 moves + softmax leads to other    other (interesting behaviour)
-% 3 moves + softmax leads to local    local
-% 4 moves + softmax leads to local    local (interesting behaviour)
+% 2 moves + softmax leads to other (interesting behaviour)
+% 3 moves + softmax leads to local
+% 4 moves + softmax leads to local (interesting behaviour)
 % 5 moves + softmax leads to other
 
 % STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
 %--------------------------------------------------------------------------
 % 5 moves - softmax leads to local
-% 4 moves - softmax leads to local    local
-% 3 moves - softmax leads to global   global
-% 2 moves - softmax leads to global   global
+% 4 moves - softmax leads to local
+% 3 moves - softmax leads to global
+% 2 moves - softmax leads to global
 % 5 moves + softmax leads to other
-% 4 moves + softmax leads to other    other (drunk agent)
-% 3 moves + softmax leads to other    other (drunk agent)
-% 2 moves + softmax leads to other    other (drunk agent)
+% 4 moves + softmax leads to other (drunk agent)
+% 3 moves + softmax leads to other (drunk agent)
+% 2 moves + softmax leads to other (drunk agent)
 
 % STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
 %--------------------------------------------------------------------------
-% 2 moves - softmax leads to local    local
-% 3 moves - softmax leads to local    local (good bahviour)
-% 4 moves - softmax leads to local    local
+% 2 moves - softmax leads to local
+% 3 moves - softmax leads to local (good bahviour)
+% 4 moves - softmax leads to local
 % 5 moves - softmax leads to local
-% 2 moves + softmax leads to other    other (drunk agent)
-% 3 moves + softmax leads to other    other (drunk agent)
-% 4 moves + softmax leads to other    other (drunk agent)
-% 5 moves + softmax leads to other    other (drunk agent)
+% 2 moves + softmax leads to other (drunk agent)
+% 3 moves + softmax leads to other (drunk agent)
+% 4 moves + softmax leads to other (drunk agent)
+% 5 moves + softmax leads to other (drunk agent)
 
 MAZE_3  = [...
     1 1 1 1 1 1 1 1 1;
@@ -185,35 +185,35 @@ OUTCOMES_3    = 13;
 
 % DETERMINISTIC
 %--------------------------------------------------------------------------
-% 2 moves - softmax leads to local    local
-% 3 moves - softmax leads to local    local
-% 4 moves - softmax leads to local    local
+% 2 moves - softmax leads to local
+% 3 moves - softmax leads to local
+% 4 moves - softmax leads to local
 % 5 moves - softmax leads to local
-% 2 moves + softmax leads to local    other
-% 3 moves + softmax leads to other    other (interresting behaviour)
-% 4 moves + softmax leads to other    other
-% 5 moves + softmax leads to local    
+% 2 moves + softmax leads to other
+% 3 moves + softmax leads to other (interresting behaviour)
+% 4 moves + softmax leads to other
+% 5 moves + softmax leads to local
 
 % STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
 %--------------------------------------------------------------------------
-% 2 moves - softmax leads to local    local
-% 3 moves - softmax leads to local    local
-% 4 moves - softmax leads to local    local
-% 5 moves - softmax leads to local    
-% 2 moves + softmax leads to local    local
-% 3 moves + softmax leads to local    local
-% 4 moves + softmax leads to local    local
+% 2 moves - softmax leads to local
+% 3 moves - softmax leads to local
+% 4 moves - softmax leads to local
+% 5 moves - softmax leads to local
+% 2 moves + softmax leads to local
+% 3 moves + softmax leads to local
+% 4 moves + softmax leads to local
 % 5 moves + softmax leads to local
 
 % STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
 %--------------------------------------------------------------------------
-% 2 moves - softmax leads to local    local
-% 3 moves - softmax leads to local    local
-% 4 moves - softmax leads to local    local
+% 2 moves - softmax leads to local
+% 3 moves - softmax leads to local
+% 4 moves - softmax leads to local
 % 5 moves - softmax leads to local
-% 2 moves + softmax leads to local    local
-% 3 moves + softmax leads to local    local
-% 4 moves + softmax leads to local    local
+% 2 moves + softmax leads to local
+% 3 moves + softmax leads to local
+% 4 moves + softmax leads to local
 % 5 moves + softmax leads to local
 
 MAZE_4  = [...
@@ -234,11 +234,11 @@ OUTCOMES_4    = 10;
 
 
 
-MAZE        = MAZE_3;
-EXIT_POS    = EXIT_POS_3;
-START_POS   = START_POS_3;
-STATES      = STATES_3;    % Number of states
-OUTCOMES    = OUTCOMES_3;  % Number of outcomes
+MAZE        = MAZE_4;
+EXIT_POS    = EXIT_POS_4;
+START_POS   = START_POS_4;
+STATES      = STATES_4;    % Number of states
+OUTCOMES    = OUTCOMES_4;  % Number of outcomes
 ACTIONS     = 5;           % Number of actions: UP=1,DOWN=2,LEFT=3,RIGHT=4,STAY=5
 NOISE       = 0.2;
 SIGNAL      = 1 - NOISE;
