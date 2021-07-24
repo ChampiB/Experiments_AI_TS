@@ -232,13 +232,148 @@ START_POS_4   = [8,5];
 STATES_4      = 19;
 OUTCOMES_4    = 10;
 
+% DETERMINISTIC
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to 
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to global
+% 3 moves + softmax leads to global
+% 4 moves + softmax leads to 
+% 5 moves + softmax leads to 
+
+% STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to 
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to global
+% 3 moves + softmax leads to global
+% 4 moves + softmax leads to 
+% 5 moves + softmax leads to 
+
+% STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to 
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to global
+% 3 moves + softmax leads to global
+% 4 moves + softmax leads to 
+% 5 moves + softmax leads to 
+
+MAZE_5  = [...
+    1 1 1 1 1 1 1 1 1;
+    1 0 0 0 0 0 0 0 1;
+    1 1 1 1 1 1 1 1 1;
+];
+EXIT_POS_5    = [2,8];
+START_POS_5   = [2,2];
+STATES_5      = 7;
+OUTCOMES_5    = 7;
+
+% DETERMINISTIC
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to global
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to global
+% 3 moves + softmax leads to global
+% 4 moves + softmax leads to global
+% 5 moves + softmax leads to 
+
+% STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to global
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to global
+% 3 moves + softmax leads to global
+% 4 moves + softmax leads to global
+% 5 moves + softmax leads to 
+
+% STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to global
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to global
+% 3 moves + softmax leads to global
+% 4 moves + softmax leads to global
+% 5 moves + softmax leads to global
+
+MAZE_6 = [...
+    1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
+    1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
+    1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
+];
+EXIT_POS_6    = [2,15];
+START_POS_6   = [2,2];
+STATES_6      = 14;
+OUTCOMES_6    = 14;
+
+% DETERMINISTIC
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to global
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to other
+% 3 moves + softmax leads to other
+% 4 moves + softmax leads to other
+% 5 moves + softmax leads to 
+
+% STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to global
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to other
+% 3 moves + softmax leads to other
+% 4 moves + softmax leads to other
+% 5 moves + softmax leads to 
+
+% STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to global
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to global
+% 3 moves + softmax leads to global
+% 4 moves + softmax leads to other
+% 5 moves + softmax leads to 
+
+MAZE_7 = [...
+    1 1 1 1 1 1 1 1 1 1;
+    1 0 0 0 0 0 0 0 0 1;
+    1 1 1 1 1 1 1 1 0 1;
+    1 1 1 1 1 1 1 1 0 1;
+    1 1 1 1 1 1 1 1 0 1;
+    1 1 1 1 1 1 1 1 0 1;
+    1 1 1 1 1 1 1 1 0 1;
+    1 1 1 1 1 1 1 1 0 1;
+    1 1 1 1 1 1 1 1 1 1;
+];
+EXIT_POS_7    = [8,9];
+START_POS_7   = [2,2];
+STATES_7      = 14;
+OUTCOMES_7    = 14;
 
 
-MAZE        = MAZE_4;
-EXIT_POS    = EXIT_POS_4;
-START_POS   = START_POS_4;
-STATES      = STATES_4;    % Number of states
-OUTCOMES    = OUTCOMES_4;  % Number of outcomes
+
+MAZE        = MAZE_6;
+EXIT_POS    = EXIT_POS_6;
+START_POS   = START_POS_6;
+STATES      = STATES_6;    % Number of states
+OUTCOMES    = OUTCOMES_6;  % Number of outcomes
 ACTIONS     = 5;           % Number of actions: UP=1,DOWN=2,LEFT=3,RIGHT=4,STAY=5
 NOISE       = 0.2;
 SIGNAL      = 1 - NOISE;
