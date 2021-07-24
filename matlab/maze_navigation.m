@@ -22,8 +22,8 @@ label.modality   = {'distance'};
 % 3 moves - softmax leads to local
 % 4 moves - softmax leads to local
 % 5 moves - softmax leads to local
-% 2 moves + softmax leads to other (weird behaviour)
-% 3 moves + softmax leads to other (weird behaviour)
+% 2 moves + softmax leads to other **
+% 3 moves + softmax leads to other **
 % 4 moves + softmax leads to global
 % 5 moves + softmax leads to global
 
@@ -31,23 +31,23 @@ label.modality   = {'distance'};
 %--------------------------------------------------------------------------
 % 5 moves - softmax leads to local
 % 4 moves - softmax leads to local
-% 3 moves - softmax leads to local (good behaviour)
-% 2 moves - softmax leads to other (weird behaviour)
+% 3 moves - softmax leads to local ***
+% 2 moves - softmax leads to other **
 % 5 moves + softmax leads to other
 % 4 moves + softmax leads to local
-% 3 moves + softmax leads to other (epileptic behaviour)
+% 3 moves + softmax leads to other *
 % 2 moves + softmax leads to local
 
 % STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
 %--------------------------------------------------------------------------
 % 5 moves - softmax leads to global
 % 4 moves - softmax leads to global
-% 3 moves - softmax leads to global (behaviour a bit weird)
-% 2 moves - softmax leads to global (good behaviour)
+% 3 moves - softmax leads to global **
+% 2 moves - softmax leads to global ***
 % 5 moves + softmax leads to local
 % 4 moves + softmax leads to other
-% 3 moves + softmax leads to other (weird behaviour)    
-% 2 moves + softmax leads to other (weird behaviour)
+% 3 moves + softmax leads to other **
+% 2 moves + softmax leads to other **
 
 MAZE_1  = [...
     1 1 1 1 1 1 1 1;
@@ -77,8 +77,8 @@ OUTCOMES_1    = 10;
 % 3 moves - softmax leads to global
 % 4 moves - softmax leads to local
 % 5 moves - softmax leads to local
-% 2 moves + softmax leads to global (good bahaviour)
-% 3 moves + softmax leads to global (good bahaviour)
+% 2 moves + softmax leads to global ***
+% 3 moves + softmax leads to global ***
 % 4 moves + softmax leads to global
 % 5 moves + softmax leads to global
 
@@ -90,19 +90,19 @@ OUTCOMES_1    = 10;
 % 2 moves - softmax leads to global
 % 5 moves + softmax leads to global
 % 4 moves + softmax leads to global
-% 3 moves + softmax leads to global (good bahaviour)
-% 2 moves + softmax leads to global (good bahaviour)
+% 3 moves + softmax leads to global ***
+% 2 moves + softmax leads to global ***
 
 % STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
 %--------------------------------------------------------------------------
 % 5 moves - softmax leads to global
 % 4 moves - softmax leads to global
 % 3 moves - softmax leads to global
-% 2 moves - softmax leads to global (a bit weird bahaviour)
+% 2 moves - softmax leads to global **
 % 5 moves + softmax leads to global
 % 4 moves + softmax leads to global
-% 3 moves + softmax leads to global (weird bahaviour)
-% 2 moves + softmax leads to global (weird bahaviour)
+% 3 moves + softmax leads to global **
+% 2 moves + softmax leads to global **
 
 MAZE_2  = [...
     1 1 1 1 1;
@@ -127,13 +127,13 @@ OUTCOMES_2    = 5;
 
 % DETERMINISTIC
 %--------------------------------------------------------------------------
-% 2 moves - softmax leads to global (brillant behavour)
-% 3 moves - softmax leads to global (brillant behavour)
+% 2 moves - softmax leads to global ****
+% 3 moves - softmax leads to global ****
 % 4 moves - softmax leads to global
 % 5 moves - softmax leads to global
-% 2 moves + softmax leads to other (interesting behaviour)
+% 2 moves + softmax leads to other !
 % 3 moves + softmax leads to local
-% 4 moves + softmax leads to local (interesting behaviour)
+% 4 moves + softmax leads to local !
 % 5 moves + softmax leads to other
 
 % STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
@@ -143,20 +143,20 @@ OUTCOMES_2    = 5;
 % 3 moves - softmax leads to global
 % 2 moves - softmax leads to global
 % 5 moves + softmax leads to other
-% 4 moves + softmax leads to other (drunk agent)
-% 3 moves + softmax leads to other (drunk agent)
-% 2 moves + softmax leads to other (drunk agent)
+% 4 moves + softmax leads to other *
+% 3 moves + softmax leads to other *
+% 2 moves + softmax leads to other *
 
 % STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
 %--------------------------------------------------------------------------
 % 2 moves - softmax leads to local
-% 3 moves - softmax leads to local (good bahviour)
+% 3 moves - softmax leads to local ***
 % 4 moves - softmax leads to local
 % 5 moves - softmax leads to local
-% 2 moves + softmax leads to other (drunk agent)
-% 3 moves + softmax leads to other (drunk agent)
-% 4 moves + softmax leads to other (drunk agent)
-% 5 moves + softmax leads to other (drunk agent)
+% 2 moves + softmax leads to other *
+% 3 moves + softmax leads to other *
+% 4 moves + softmax leads to other *
+% 5 moves + softmax leads to other *
 
 MAZE_3  = [...
     1 1 1 1 1 1 1 1 1;
@@ -190,7 +190,7 @@ OUTCOMES_3    = 13;
 % 4 moves - softmax leads to local
 % 5 moves - softmax leads to local
 % 2 moves + softmax leads to other
-% 3 moves + softmax leads to other (interresting behaviour)
+% 3 moves + softmax leads to other !
 % 4 moves + softmax leads to other
 % 5 moves + softmax leads to local
 
@@ -369,13 +369,13 @@ OUTCOMES_7    = 14;
 
 
 
-MAZE        = MAZE_6;
-EXIT_POS    = EXIT_POS_6;
-START_POS   = START_POS_6;
-STATES      = STATES_6;    % Number of states
-OUTCOMES    = OUTCOMES_6;  % Number of outcomes
+MAZE        = MAZE_2;
+EXIT_POS    = EXIT_POS_2;
+START_POS   = START_POS_2;
+STATES      = STATES_2;    % Number of states
+OUTCOMES    = OUTCOMES_2;  % Number of outcomes
 ACTIONS     = 5;           % Number of actions: UP=1,DOWN=2,LEFT=3,RIGHT=4,STAY=5
-NOISE       = 0.2;
+NOISE       = 0.1;
 SIGNAL      = 1 - NOISE;
 TRIALS      = 30;
 
@@ -435,6 +435,7 @@ for x = 1:size(MAZE,2)
     end
 end
 end
+disp(B{1})
 
 % allowable policies (2-7 moves): V
 %--------------------------------------------------------------------------
@@ -445,8 +446,8 @@ for i3 = 1:ACTIONS
 for i4 = 1:ACTIONS
 for i5 = 1:ACTIONS
 %for i6 = 1:ACTIONS
-%for i7 = 1:ACTIONS %BOOM!
-	V(:,end + 1) = [i1;i2;i3;i4;i5];
+%for i7 = 1:ACTIONS % Crashes on maze 1 ...
+    V(:,end + 1) = [i1;i2;i3;i4;i5];
 %end
 %end
 end
