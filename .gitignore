@@ -1,5 +1,6 @@
 results
 examples
+matlab/graph_navigation.asv
 
 # Prerequisites
 *.d
@@ -36,6 +37,7 @@ examples
 
 # CLion
 cmake-build-debug/
+cmake-build-release/
 .idea/
 build/
 examples/.idea
