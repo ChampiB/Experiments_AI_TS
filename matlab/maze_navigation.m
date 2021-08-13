@@ -2,6 +2,11 @@
 % Results of the experiments.
 %
 
+function MDP = maze_navigation
+rng('default')
+label.factor     = {'where'};
+label.modality   = {'distance'};
+
 % Execution time for 2-7 moves:
 %--------------------------------------------------------------------------
 % 2 --> 0.865816
@@ -13,35 +18,38 @@
 
 % DETERMINISTIC
 %--------------------------------------------------------------------------
-% 2-5 moves - softmax leads to local minimum
-% 5   moves + softmax leads to local minimum
-% 4   moves + softmax leads to global minimum
-% 3   moves + softmax leads to state 19
-% 2   moves + softmax leads to state 13
+% 2 moves - softmax leads to local
+% 3 moves - softmax leads to local
+% 4 moves - softmax leads to local
+% 5 moves - softmax leads to local
+% 2 moves + softmax leads to other **
+% 3 moves + softmax leads to other **
+% 4 moves + softmax leads to global
+% 5 moves + softmax leads to global
 
 % STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
 %--------------------------------------------------------------------------
-% 3-5 moves - softmax leads to local minimum
-% 2   moves - softmax leads to state 22
-% 5   moves + softmax leads to state 15 (local minimum with tolerance)
-% 4   moves + softmax leads to state 18
-% 3   moves + softmax leads to state 14
-% 2   moves + softmax leads to state 21
+% 5 moves - softmax leads to local
+% 4 moves - softmax leads to local
+% 3 moves - softmax leads to local ***
+% 2 moves - softmax leads to other **
+% 5 moves + softmax leads to other
+% 4 moves + softmax leads to local
+% 3 moves + softmax leads to other *
+% 2 moves + softmax leads to local
 
 % STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
-% 3-5 moves - softmax leads to local minimum
-% 2   moves - softmax leads to state 22
-% 5   moves + softmax leads to state 15 (local minimum with tolerance)
-% 4   moves + softmax leads to state 18
-% 3   moves + softmax leads to state 14
-% 2   moves + softmax leads to state 21
+%--------------------------------------------------------------------------
+% 5 moves - softmax leads to global
+% 4 moves - softmax leads to global
+% 3 moves - softmax leads to global **
+% 2 moves - softmax leads to global ***
+% 5 moves + softmax leads to local
+% 4 moves + softmax leads to other
+% 3 moves + softmax leads to other **
+% 2 moves + softmax leads to other **
 
-function MDP = maze_navigation
-rng('default')
-label.factor     = {'where'};
-label.modality   = {'distance'};
-
-MAZE  = [...
+MAZE_1  = [...
     1 1 1 1 1 1 1 1;
     1 0 0 0 0 0 0 1;
     1 0 1 1 1 1 0 1;
@@ -49,14 +57,327 @@ MAZE  = [...
     1 0 1 1 0 1 0 1;
     1 0 0 0 0 0 0 1;
     1 1 1 1 1 1 1 1];
-EXIT_POS    = [2,7];
-START_POS   = [6,2];
-STATES      = 22;   % Number of states
-ACTIONS     = 5;    % Number of actions: UP=1,DOWN=2,LEFT=3,RIGHT=4,STAY=5
-OUTCOMES    = 10;   % Number of outcomes
-SIGNAL      = 0.9;
+EXIT_POS_1    = [2,7];
+START_POS_1   = [6,2];
+STATES_1      = 22;
+OUTCOMES_1    = 10;
+
+% Execution time for 2-7 moves:
+%--------------------------------------------------------------------------
+% 2 --> 2.835146
+% 3 --> 13.760750
+% 4 --> 62.365496
+% 5 --> 251.076604
+% 6 --> 
+% 7 --> NEVER ENDED (CRASHED)
+
+% DETERMINISTIC
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to local
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to local
+% 5 moves - softmax leads to local
+% 2 moves + softmax leads to global ***
+% 3 moves + softmax leads to global ***
+% 4 moves + softmax leads to global
+% 5 moves + softmax leads to global
+
+% STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
+%--------------------------------------------------------------------------
+% 5 moves - softmax leads to global
+% 4 moves - softmax leads to local
+% 3 moves - softmax leads to global
+% 2 moves - softmax leads to global
+% 5 moves + softmax leads to global
+% 4 moves + softmax leads to global
+% 3 moves + softmax leads to global ***
+% 2 moves + softmax leads to global ***
+
+% STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
+%--------------------------------------------------------------------------
+% 5 moves - softmax leads to global
+% 4 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 2 moves - softmax leads to global **
+% 5 moves + softmax leads to global
+% 4 moves + softmax leads to global
+% 3 moves + softmax leads to global **
+% 2 moves + softmax leads to global **
+
+MAZE_2  = [...
+    1 1 1 1 1;
+    1 0 0 0 1;
+    1 1 0 1 1;
+    1 0 0 0 1;
+    1 1 1 1 1
+];
+EXIT_POS_2    = [2,4];
+START_POS_2   = [4,4];
+STATES_2      = 7;
+OUTCOMES_2    = 5;
+
+% Execution time for 2-7 moves:
+%--------------------------------------------------------------------------
+% 2 --> 4.320663
+% 3 --> 25.461098
+% 4 --> 146.833761
+% 5 --> 813.681340
+% 6 --> 
+% 7 --> NEVER ENDED (CRASHED)
+
+% DETERMINISTIC
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global ****
+% 3 moves - softmax leads to global ****
+% 4 moves - softmax leads to global
+% 5 moves - softmax leads to global
+% 2 moves + softmax leads to other !
+% 3 moves + softmax leads to local
+% 4 moves + softmax leads to local !
+% 5 moves + softmax leads to other
+
+% STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
+%--------------------------------------------------------------------------
+% 5 moves - softmax leads to local
+% 4 moves - softmax leads to local
+% 3 moves - softmax leads to global
+% 2 moves - softmax leads to global
+% 5 moves + softmax leads to other
+% 4 moves + softmax leads to other *
+% 3 moves + softmax leads to other *
+% 2 moves + softmax leads to other *
+
+% STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to local
+% 3 moves - softmax leads to local ***
+% 4 moves - softmax leads to local
+% 5 moves - softmax leads to local
+% 2 moves + softmax leads to other *
+% 3 moves + softmax leads to other *
+% 4 moves + softmax leads to other *
+% 5 moves + softmax leads to other *
+
+MAZE_3  = [...
+    1 1 1 1 1 1 1 1 1;
+    1 0 0 0 0 0 0 0 1;
+    1 0 1 1 1 1 1 0 1;
+    1 0 0 0 0 0 1 0 1;
+    1 0 1 1 1 0 1 0 1;
+    1 0 0 0 1 0 1 0 1;
+    1 0 1 0 1 0 1 0 1;
+    1 0 0 0 0 0 0 0 1;
+    1 1 1 1 1 1 1 1 1
+];
+EXIT_POS_3    = [2,8];
+START_POS_3   = [8,2];
+STATES_3      = 34;
+OUTCOMES_3    = 13;
+
+% Execution time for 2-7 moves:
+%--------------------------------------------------------------------------
+% 2 --> 3.177064
+% 3 --> 21.037615
+% 4 --> 134.622249
+% 5 --> 713.015619
+% 6 --> 
+% 7 --> NEVER ENDED (CRASHED)
+
+% DETERMINISTIC
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to local
+% 3 moves - softmax leads to local
+% 4 moves - softmax leads to local
+% 5 moves - softmax leads to local
+% 2 moves + softmax leads to other
+% 3 moves + softmax leads to other !
+% 4 moves + softmax leads to other
+% 5 moves + softmax leads to local
+
+% STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to local
+% 3 moves - softmax leads to local
+% 4 moves - softmax leads to local
+% 5 moves - softmax leads to local
+% 2 moves + softmax leads to local
+% 3 moves + softmax leads to local
+% 4 moves + softmax leads to local
+% 5 moves + softmax leads to local
+
+% STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to local
+% 3 moves - softmax leads to local
+% 4 moves - softmax leads to local
+% 5 moves - softmax leads to local
+% 2 moves + softmax leads to local
+% 3 moves + softmax leads to local
+% 4 moves + softmax leads to local
+% 5 moves + softmax leads to local
+
+MAZE_4  = [...
+    1 1 1 1 1 1;
+    1 0 0 0 0 1;
+    1 0 1 1 1 1;
+    1 0 0 0 0 1;
+    1 1 1 1 0 1;
+    1 0 0 0 0 1;
+    1 0 1 1 1 1;
+    1 0 0 0 0 1;
+    1 1 1 1 1 1
+];
+EXIT_POS_4    = [2,5];
+START_POS_4   = [8,5];
+STATES_4      = 19;
+OUTCOMES_4    = 10;
+
+% DETERMINISTIC
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to 
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to global
+% 3 moves + softmax leads to global
+% 4 moves + softmax leads to 
+% 5 moves + softmax leads to 
+
+% STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to 
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to global
+% 3 moves + softmax leads to global
+% 4 moves + softmax leads to 
+% 5 moves + softmax leads to 
+
+% STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to 
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to global
+% 3 moves + softmax leads to global
+% 4 moves + softmax leads to 
+% 5 moves + softmax leads to 
+
+MAZE_5  = [...
+    1 1 1 1 1 1 1 1 1;
+    1 0 0 0 0 0 0 0 1;
+    1 1 1 1 1 1 1 1 1;
+];
+EXIT_POS_5    = [2,8];
+START_POS_5   = [2,2];
+STATES_5      = 7;
+OUTCOMES_5    = 7;
+
+% DETERMINISTIC
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to global
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to global
+% 3 moves + softmax leads to global
+% 4 moves + softmax leads to global
+% 5 moves + softmax leads to 
+
+% STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to global
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to global
+% 3 moves + softmax leads to global
+% 4 moves + softmax leads to global
+% 5 moves + softmax leads to 
+
+% STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to global
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to global
+% 3 moves + softmax leads to global
+% 4 moves + softmax leads to global
+% 5 moves + softmax leads to global
+
+MAZE_6 = [...
+    1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
+    1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1;
+    1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
+];
+EXIT_POS_6    = [2,15];
+START_POS_6   = [2,2];
+STATES_6      = 14;
+OUTCOMES_6    = 14;
+
+% DETERMINISTIC
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to global
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to other
+% 3 moves + softmax leads to other
+% 4 moves + softmax leads to other
+% 5 moves + softmax leads to 
+
+% STOCHASTIC (0.1 NOISE / 0.9 SIGNAL)
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to global
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to other
+% 3 moves + softmax leads to other
+% 4 moves + softmax leads to other
+% 5 moves + softmax leads to 
+
+% STOCHASTIC (0.2 NOISE / 0.8 SIGNAL)
+%--------------------------------------------------------------------------
+% 2 moves - softmax leads to global
+% 3 moves - softmax leads to global
+% 4 moves - softmax leads to global
+% 5 moves - softmax leads to 
+% 2 moves + softmax leads to global
+% 3 moves + softmax leads to global
+% 4 moves + softmax leads to other
+% 5 moves + softmax leads to 
+
+MAZE_7 = [...
+    1 1 1 1 1 1 1 1 1 1;
+    1 0 0 0 0 0 0 0 0 1;
+    1 1 1 1 1 1 1 1 0 1;
+    1 1 1 1 1 1 1 1 0 1;
+    1 1 1 1 1 1 1 1 0 1;
+    1 1 1 1 1 1 1 1 0 1;
+    1 1 1 1 1 1 1 1 0 1;
+    1 1 1 1 1 1 1 1 0 1;
+    1 1 1 1 1 1 1 1 1 1;
+];
+EXIT_POS_7    = [8,9];
+START_POS_7   = [2,2];
+STATES_7      = 14;
+OUTCOMES_7    = 14;
+
+
+
+MAZE        = MAZE_2;
+EXIT_POS    = EXIT_POS_2;
+START_POS   = START_POS_2;
+STATES      = STATES_2;    % Number of states
+OUTCOMES    = OUTCOMES_2;  % Number of outcomes
+ACTIONS     = 5;           % Number of actions: UP=1,DOWN=2,LEFT=3,RIGHT=4,STAY=5
 NOISE       = 0.1;
-TRIALS      = 15;
+SIGNAL      = 1 - NOISE;
+TRIALS      = 30;
 
 % Load mapping from position to state index
 %--------------------------------------------------------------------------
@@ -108,29 +429,30 @@ for x = 1:size(MAZE,2)
             if (p == k)
                 continue;
             end
-            ss = simlate_action(x,y,k,u,s,MAZE,STATES_INDEX);
-            B{1}(ss,s,p) = B{1}(ss,s,p) + NOISE / 4;
+            ss = simlate_action(x,y,p,u,s,MAZE,STATES_INDEX);
+            B{1}(ss,s,k) = B{1}(ss,s,k) + NOISE / 4;
         end
     end
 end
 end
+disp(B{1})
 
 % allowable policies (2-7 moves): V
 %--------------------------------------------------------------------------
 V     = [];
 for i1 = 1:ACTIONS
 for i2 = 1:ACTIONS
-%for i3 = 1:ACTIONS
-%for i4 = 1:ACTIONS
-%for i5 = 1:ACTIONS
+for i3 = 1:ACTIONS
+for i4 = 1:ACTIONS
+for i5 = 1:ACTIONS
 %for i6 = 1:ACTIONS
-%for i7 = 1:ACTIONS
-	V(:,end + 1) = [i1;i2];
+%for i7 = 1:ACTIONS % Crashes on maze 1 ...
+    V(:,end + 1) = [i1;i2;i3;i4;i5];
 %end
 %end
-%end
-%end
-%end
+end
+end
+end
 end
 end
 
@@ -138,7 +460,7 @@ end
 %--------------------------------------------------------------------------
 C{1} = zeros(OUTCOMES,1);
 for g = 1:OUTCOMES
-    C{1}(g) = OUTCOMES - g - 1;
+    C{1}(g) = OUTCOMES - g;
 end
 C{1} = spm_softmax(C{1});
 
