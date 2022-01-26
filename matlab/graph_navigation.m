@@ -244,7 +244,7 @@ function [yp,xp] = state_to_position(path_1,path_2,state)
     
     % Agent is in first path
     for i = 1:size(path_1,2)
-        if (s == path_1(i))
+        if (state == path_1(i))
             yp = 2;
             xp = 2 + i;
             return;
@@ -253,7 +253,7 @@ function [yp,xp] = state_to_position(path_1,path_2,state)
     
     % Agent is in second path
     for i = 1:size(path_2,2)
-        if (s == path_2(i))
+        if (state == path_2(i))
             yp = 4;
             xp = 2 + i;
             return;
