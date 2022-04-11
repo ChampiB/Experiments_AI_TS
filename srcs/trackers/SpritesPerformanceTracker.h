@@ -2,8 +2,8 @@
 // Created by Theophile Champion on 01/07/2021.
 //
 
-#ifndef EXPERIMENTS_AI_TS_MAZE_PERFORMANCE_TRACKER_H
-#define EXPERIMENTS_AI_TS_MAZE_PERFORMANCE_TRACKER_H
+#ifndef EXPERIMENTS_AI_TS_SPRITES_PERFORMANCE_TRACKER_H
+#define EXPERIMENTS_AI_TS_SPRITES_PERFORMANCE_TRACKER_H
 
 #include <vector>
 #include <iostream>
@@ -11,23 +11,18 @@
 
 namespace experiments::trackers {
 
-    class MazePerformanceTracker : public PerformanceTracker {
+    class SpritesPerformanceTracker : public PerformanceTracker {
     public:
         /**
          * Create a lake performance tracker.
          * @return
          */
-        static std::unique_ptr<MazePerformanceTracker> create(
-            const std::vector<std::pair<int, int>> &local_minimums_pos,
-            int tolerance_level = 1
-        );
+        static std::unique_ptr<SpritesPerformanceTracker> create();
 
         /**
          * Constructor of the performance tracker.
-         * @param local_minimums_pos the position of the local minimums
-         * @param tolerance_level the tolerance level in distance unit
          */
-        explicit MazePerformanceTracker(const std::vector<std::pair<int, int>> &local_minimums_pos, int tolerance_level = 1);
+        explicit SpritesPerformanceTracker();
 
         /**
          * Reset the performance tracker.
@@ -47,11 +42,10 @@ namespace experiments::trackers {
         void print(std::ostream &output) const override;
 
     private:
-        int tolerance;
-        std::vector<std::pair<int, int>> local_pos;
-        std::vector<double> perf;
+        int nb_runs;
+        double total_perf;
     };
 
 }
 
-#endif //EXPERIMENTS_AI_TS_MAZE_PERFORMANCE_TRACKER_H
+#endif //EXPERIMENTS_AI_TS_SPRITES_PERFORMANCE_TRACKER_H

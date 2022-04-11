@@ -2,8 +2,8 @@
 // Created by Theophile Champion on 01/07/2021.
 //
 
-#ifndef EXPERIMENTS_AI_TS_MAZE_PERFORMANCE_TRACKER_H
-#define EXPERIMENTS_AI_TS_MAZE_PERFORMANCE_TRACKER_H
+#ifndef EXPERIMENTS_AI_TS_FROZEN_LAKE_PERFORMANCE_TRACKER_H
+#define EXPERIMENTS_AI_TS_FROZEN_LAKE_PERFORMANCE_TRACKER_H
 
 #include <vector>
 #include <iostream>
@@ -11,23 +11,20 @@
 
 namespace experiments::trackers {
 
-    class MazePerformanceTracker : public PerformanceTracker {
+    class FrozenLakePerformanceTracker : public PerformanceTracker {
     public:
         /**
          * Create a lake performance tracker.
+         * @param tolerance_level the tolerance level in distance unit
          * @return
          */
-        static std::unique_ptr<MazePerformanceTracker> create(
-            const std::vector<std::pair<int, int>> &local_minimums_pos,
-            int tolerance_level = 1
-        );
+        static std::unique_ptr<FrozenLakePerformanceTracker> create(int tolerance_level = 1);
 
         /**
          * Constructor of the performance tracker.
-         * @param local_minimums_pos the position of the local minimums
          * @param tolerance_level the tolerance level in distance unit
          */
-        explicit MazePerformanceTracker(const std::vector<std::pair<int, int>> &local_minimums_pos, int tolerance_level = 1);
+        explicit FrozenLakePerformanceTracker(int tolerance_level = 1);
 
         /**
          * Reset the performance tracker.
@@ -48,10 +45,10 @@ namespace experiments::trackers {
 
     private:
         int tolerance;
-        std::vector<std::pair<int, int>> local_pos;
         std::vector<double> perf;
+        int nb_fell_in_holes;
     };
 
 }
 
-#endif //EXPERIMENTS_AI_TS_MAZE_PERFORMANCE_TRACKER_H
+#endif //EXPERIMENTS_AI_TS_FROZEN_LAKE_PERFORMANCE_TRACKER_H

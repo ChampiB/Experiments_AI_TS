@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <memory>
+#include <torch/torch.h>
 
 namespace experiments::trackers {
 
@@ -14,9 +15,16 @@ namespace experiments::trackers {
     public:
         /**
          * Create a time tracker.
+         * @param nb_runs the number of runs whose time should be tracked.
          * @return the time tracker.
          */
-        static std::unique_ptr<TimeTracker> create();
+        static std::unique_ptr<TimeTracker> create(int nb_runs);
+
+        /**
+         * Constructor.
+         * @param nb_runs the number of runs whose time should be tracked.
+         */
+        explicit TimeTracker(int nb_runs);
 
         /**
          * Record the starting time point.
@@ -37,6 +45,9 @@ namespace experiments::trackers {
     private:
         std::chrono::time_point<std::chrono::steady_clock> begin;
         std::chrono::time_point<std::chrono::steady_clock> end;
+        torch::Tensor ex_times_s{};
+        torch::Tensor ex_times_ms{};
+        int index;
     };
 
 }

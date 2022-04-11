@@ -29,6 +29,8 @@ set(EXPERIMENTS_SRCS
         # Trackers package
         trackers/TimeTracker.cpp trackers/TimeTracker.h
         trackers/PerformanceTracker.h
+        trackers/SpritesPerformanceTracker.cpp trackers/SpritesPerformanceTracker.h
+        trackers/FrozenLakePerformanceTracker.cpp trackers/FrozenLakePerformanceTracker.h
         trackers/MazePerformanceTracker.cpp trackers/MazePerformanceTracker.h
         trackers/GraphPerformanceTracker.cpp trackers/GraphPerformanceTracker.h)
 
